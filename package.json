@@ -5,7 +5,8 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "format": "npx prettier --write resources/"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
