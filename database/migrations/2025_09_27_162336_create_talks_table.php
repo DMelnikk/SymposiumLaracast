@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('talks', function (Blueprint $table) {
@@ -19,14 +16,11 @@ return new class extends Migration
             $table->string('type');
             $table->text('abstract');
             $table->text('organizer_notes');
-            $table->foreignIdFor(User::class );
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('talks');
