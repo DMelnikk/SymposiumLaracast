@@ -13,7 +13,7 @@ class TalkController extends Controller
      */
     public function index()
     {
-        return view('talks.index',['talks' => Auth::user()->talks]);
+        return view('talks.index', ['talks' => Auth::user()->talks]);
     }
 
     /**
@@ -47,7 +47,7 @@ class TalkController extends Controller
      */
     public function show(Talk $talk)
     {
-        return view('talks.show',['talk' => $talk]);
+        return view('talks.show', ['talk' => $talk]);
     }
 
     /**

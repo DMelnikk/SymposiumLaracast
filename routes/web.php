@@ -17,10 +17,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/talks', [TalkController::class, 'index'])->name('talks.index');
-    Route::get('/talks/create',[TalkController::class,'create'])->name('talks.create');
+    Route::get('talks', [TalkController::class, 'index'])->name('talks.index');
+    Route::get('talks/create', [TalkController::class, 'create'])->name('talks.create');
     Route::get('talks/{talk}', [TalkController::class, 'show'])->name('talks.show');
-    Route::post('/talks',[TalkController::class,'store'])->name('talks.store');
+    Route::post('talks', [TalkController::class, 'store'])->name('talks.store');
 });
 
 require __DIR__ . '/auth.php';
