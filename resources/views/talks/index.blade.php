@@ -11,9 +11,9 @@
                 <div class="p-6 text-gray-900">
                     {{ __("Index talk") }}
                     <ul class="list-disc pl-4">
-                        @foreach($talks as $talk)
+                        @foreach ($talks as $talk)
                         <li>
-                            <a href="{{route('talks.show',['talk' => $talk])}}" class="hover:underline">{{$talk->title}}</a>
+                            <a href="{{ route('talks.show',['talk' => $talk]) }}" class="hover:underline">{{ $talk->title }}</a>
 
                         </li>
                         @endforeach
