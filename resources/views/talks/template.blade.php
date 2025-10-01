@@ -1,11 +1,10 @@
 <div class="max-w-2xl mx-auto p-4">
-    <form class="space-y-6" method="post" action="{{ route('talks.store') }}">
         @csrf
         <div>
             <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-            <input type="text" id="title" name="title"
+            <input type="text" id="title" name="title" value="{{old('title', $talk?->title)}}"
                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                   placeholder="How to save a life">
+                   placeholder="How to save a life" >
             <x-input-error :messages="$errors->get('title')" />
         </div>
         <div class="grid grid-cols-2 gap-4">
@@ -13,14 +12,14 @@
                 <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
                 <select id="type" name="type"
                         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    <option>Lightning</option>
-                    <option>Standard</option>
-                    <option>Keynote</option>
+                   @foreach(App\Enums\TalkType::cases() as $talkType)
+                        <option {{old('type') === $talkType->value ? 'selected' : ''}} value="{{$talkType->value}}">{{ucwords($talkType->value)}}</option>
+                    @endforeach
                 </select>
             </div>
             <div>
                 <label for="length" class="block text-sm font-medium text-gray-700">Length</label>
-                <input type="text" id="length" name="length"
+                <input type="text" id="length" name="length"  value="{{old('length', $talk?->title)}}"
                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 <x-input-error :messages="$errors->get('length')" />
             </div>
@@ -28,7 +27,7 @@
         <div>
             <label for="abstract" class="block text-sm font-medium text-gray-700">Abstract</label>
             <textarea id="abstract" name="abstract" rows="4"
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{old('abstract')}}</textarea>
             <p class="mt-1 text-sm text-gray-500">Describe the talk in a few sentences, in a way that's compelling and
                 informative and could be presented to the public.
             </p>
@@ -37,7 +36,7 @@
         <div>
             <label for="organizer_notes" class="block text-sm font-medium text-gray-700">Organizer Notes</label>
             <textarea id="organizer_notes" name="organizer_notes" rows="4"
-                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{old('organizer_notes')}}</textarea>
             <p class="mt-1 text-sm text-gray-500">Write any notes you may want to pass to an event organizer about this
                 talk.
             </p>
@@ -53,5 +52,4 @@
                 Save
             </button>
         </div>
-    </form>
 </div>
