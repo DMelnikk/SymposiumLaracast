@@ -11,7 +11,6 @@ test('a user can update their talk', function () {
         ->actingAs($talk->author)
         ->patch(route('talks.update'   ,$talk), [
             'title' => 'New title here',
-            'type' => \App\Enums\TalkType::KEYNOTE->value,
         ]);
     $response
         ->assertSessionHasNoErrors()
@@ -30,7 +29,6 @@ test('a user can not update other talks', function () {
         ->actingAs($otherUser)
         ->patch(route('talks.update'   ,$talk), [
             'title' => 'New title here',
-            'type' => \App\Enums\TalkType::KEYNOTE->value,
         ]);
     $response
         ->assertForbidden();
