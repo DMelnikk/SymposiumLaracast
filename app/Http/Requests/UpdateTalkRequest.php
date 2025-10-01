@@ -24,11 +24,11 @@ class UpdateTalkRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'title' => 'required|max:255',
-                'length' => '',
-                'type' => ['required',Rule::enum(TalkType::class)],
-                'abstract' => '',
-                'organizer_notes' => '',
+            'title' => 'required|max:255',
+            'length' => '',
+            'type' => ['required', Rule::enum(TalkType::class)],
+            'abstract' => '',
+            'organizer_notes' => '',
         ];
     }
 }

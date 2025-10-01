@@ -24,7 +24,7 @@ class TalkController extends Controller
      */
     public function create()
     {
-        return view('talks.create',['talk' => new Talk]);
+        return view('talks.create', ['talk' => new Talk]);
     }
 
     /**
@@ -35,7 +35,7 @@ class TalkController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'length' => '',
-            'type' => ['required',Rule::enum(TalkType::class)],
+            'type' => ['required', Rule::enum(TalkType::class)],
             'abstract' => '',
             'organizer_notes' => '',
         ]);
@@ -50,7 +50,7 @@ class TalkController extends Controller
      */
     public function show(Talk $talk)
     {
-        
+
         return view('talks.show', ['talk' => $talk]);
     }
 
@@ -71,6 +71,7 @@ class TalkController extends Controller
         $validated = $request->validated();
 
         $talk->update($validated);
+
         return redirect()->route('talks.show', ['talk' => $talk]);
     }
 
@@ -79,9 +80,10 @@ class TalkController extends Controller
      */
     public function destroy(Talk $talk)
     {
-        if($talk->user_id === Auth::user()->id) {
+        if ($talk->user_id === Auth::user()->id) {
             $talk->delete();
         }
+
         return redirect()->route('talks.index');
     }
 }

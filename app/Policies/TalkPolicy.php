@@ -4,11 +4,9 @@ namespace App\Policies;
 
 use App\Models\Talk;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class TalkPolicy
 {
-
     /**
      * Determine whether the user can view any models.
      */
@@ -65,7 +63,7 @@ class TalkPolicy
         return $this->userOwnsTalk($user, $talk);
     }
 
-    private function userOwnsTalk(User $user , Talk $talk): bool
+    private function userOwnsTalk(User $user, Talk $talk): bool
     {
         return $user->id === $talk->user_id;
     }

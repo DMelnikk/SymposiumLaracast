@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Models\Talk;
 use App\Models\User;
 
@@ -9,13 +8,12 @@ test('a user can update their talk', function () {
 
     $response = $this
         ->actingAs($talk->author)
-        ->patch(route('talks.update'   ,$talk), [
+        ->patch(route('talks.update', $talk), [
             'title' => 'New title here',
         ]);
     $response
         ->assertSessionHasNoErrors()
         ->assertRedirect(route('talks.show', $talk));
-
 
     $this->assertEquals('New title here', $talk->refresh()->title);
 });
@@ -27,13 +25,11 @@ test('a user can not update other talks', function () {
 
     $response = $this
         ->actingAs($otherUser)
-        ->patch(route('talks.update'   ,$talk), [
+        ->patch(route('talks.update', $talk), [
             'title' => 'New title here',
         ]);
     $response
         ->assertForbidden();
 
-
     $this->assertEquals($originalTitle, $talk->refresh()->title);
 });
-

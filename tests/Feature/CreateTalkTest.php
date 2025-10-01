@@ -10,11 +10,10 @@ test('a user can create a talk', function () {
         ->actingAs($user)
         ->post(route('talks.store'), [
             'title' => $title = fake()->sentence(),
-            'type' => TalkType::KEYNOTE->value
+            'type' => TalkType::KEYNOTE->value,
         ]);
     $response
         ->assertRedirect(route('talks.index'));
-
 
     $this->assertDatabaseHas('talks', [
         'title' => $title,
